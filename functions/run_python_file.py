@@ -41,3 +41,33 @@ def run_python_file(
         return "\n".join(output)
     except subprocess.TimeoutExpired:
         return "Error: Execution timed out"
+
+
+schema_run_python_file = {
+    "type": "function",
+    "function": {
+        "name": "run_python_file",
+        "description": "Run a Python file",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "working_directory": {
+                    "type": "string",
+                    "description": "The working directory",
+                },
+                "file_path": {
+                    "type": "string",
+                    "description": "The path to the Python file",
+                },
+                "args": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                    },
+                    "description": "The arguments to pass to the Python file",
+                },
+            },
+            "required": ["working_directory", "file_path"],
+        },
+    },
+}
